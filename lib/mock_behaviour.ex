@@ -85,7 +85,6 @@ defmodule MockBehaviour do
   defmacro __using__(behaviour: behaviour) do
     a = quote do
       use GenServer
-      IO.inspect __MODULE__
       def start_link(state) do
         GenServer.start_link(__MODULE__, state, name: __MODULE__)
       end
