@@ -93,7 +93,7 @@ defmodule MockBehaviour do
     x = Macro.expand(behaviour, __ENV__).behaviour_info(:callbacks)
     b = for {fname, arity} <- x do
       quote do
-        Foo.handle_mock_call(unquote(fname), unquote(arity))
+        MockBehaviour.handle_mock_call(unquote(fname), unquote(arity))
       end
     end
     [a, b]
