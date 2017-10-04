@@ -84,6 +84,7 @@ defmodule MockBehaviour do
   """
   defmacro __using__(behaviour: behaviour) do
     a = quote do
+      @behaviour unquote(behaviour)
       use GenServer
       def start_link(state) do
         GenServer.start_link(__MODULE__, state, name: __MODULE__)
