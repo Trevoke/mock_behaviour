@@ -100,7 +100,13 @@ defmodule MockBehaviour do
   end
 
   defmacro handle_mock_call(x, y) when is_atom(x) and is_integer(y) do
-    function_signature = (0..y) |> Enum.to_list |> List.delete_at(0) |> Enum.map(fn name -> {String.to_atom(Integer.to_string(name)), [], __MODULE__} end)
+    function_signature =
+    (0..y)
+    |> Enum.to_list
+    |> List.delete_at(0)
+    |> Enum.map(fn name ->
+      {String.to_atom(Integer.to_string(name)), [], __MODULE__}
+    end)
     code = {:{}, [], [x | function_signature] }
     quote do
       def unquote(x)(unquote_splicing(function_signature)) do
